@@ -41,7 +41,7 @@ export default function App() {
       ),
     ].join(', ');
 
-    console.log('Отправка данных', fullSummary);
+    console.log('Отправка данных: ', fullSummary);
 
     window.parent.postMessage({ type: 'OPEN_POPUP_FORM', payload: fullSummary }, '*');
 
