@@ -34,14 +34,17 @@ export default function App() {
   };
 
   const handleSubmit = () => {
-    const payload = {
-      model: modelKey,
-      ...formData,
-    };
+    const fullSummary = [
+      `Модель: ${modelKey}`,
+      ...Object.entries(formData).map(
+        ([key, value]) => `${key.charAt(0).toUpperCase() + key.slice(1)}: ${value}`
+      ),
+    ].join(', ');
 
-    console.log('Отправка данных в родительский документ:', payload);
+    console.log('Отправка данных в родительский документ:', fullSummary);
 
-    window.parent.postMessage({ type: 'SUBMIT_CALC', payload }, '*');
+    window.parent.postMessage({ type: 'OPEN_POPUP_FORM', payload: fullSummary }, '*');
+
     alert('Отправлено в родительский документ');
   };
 
