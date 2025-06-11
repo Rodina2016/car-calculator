@@ -45,7 +45,6 @@ export default function App() {
 
     window.parent.postMessage({ type: 'OPEN_POPUP_FORM', payload: fullSummary }, '*');
 
-    alert('Отправлено в родительский документ');
   };
 
   const steps: StepName[] = ['battery', 'color', 'wheels', 'interior', 'options', 'software'];
