@@ -19,5 +19,5 @@ export const TotalPrice = () => {
     config.extrasIds.reduce((sum, id) => sum + getPrice(model.availableOptions.extras, id), 0) +
     getPrice(model.availableOptions.software, config.softwareId);
 
-  return <span>Итого: {total.toLocaleString()} ₽</span>;
+  return <span>{total.toLocaleString('ru-RU')} рублей</span>;
 };

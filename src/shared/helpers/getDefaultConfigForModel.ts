@@ -1,4 +1,4 @@
-import { CarModel } from '@/types';
+import { CarModel } from '@/types/types';
 
 export const getDefaultConfigForModel = (model: CarModel) => {
   return {

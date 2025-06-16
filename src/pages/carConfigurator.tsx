@@ -7,6 +7,16 @@ import { StepSoftware } from '@/components/steps/stepSoftware';
 import { StepWheels } from '@/components/steps/stepWheels';
 import { TotalPrice } from '@/components/totalPrice';
 import { useConfigurator } from '@/context/configuratorContext';
+import CarIcon from '@/assets/svg/car.svg?react';
+import BatteryIcon from '@/assets/svg/battery.svg?react';
+import PaleteIcon from '@/assets/svg/pallete.svg?react';
+import DiskIcon from '@/assets/svg/disk.svg?react';
+import RudderIcon from '@/assets/svg/rudder.svg?react';
+import OptionsIcon from '@/assets/svg/options.svg?react';
+import CarbonIcon from '@/assets/svg/carbon.svg?react';
+import ArrowIcon from '@/assets/svg/arrow.svg?react';
+import { useState } from 'react';
+import carOptions from '@/data/carOptions.json';
 
 const steps = [
   StepModel,
@@ -18,50 +28,81 @@ const steps = [
   StepSoftware,
 ];
 
+const stepsIcons = [
+  <CarIcon />,
+  <BatteryIcon />,
+  <PaleteIcon />,
+  <DiskIcon />,
+  <RudderIcon />,
+  <OptionsIcon />,
+  <CarbonIcon />,
+];
+
 export const CarConfigurator = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const { currentStep, setCurrentStep, config } = useConfigurator();
   const StepComponent = steps[currentStep];
+  const model = carOptions.models.find((m) => m.id === config.modelId);
 
   return (
-    <div className="flex">
-      {/* Sidebar можно здесь же или отдельно */}
-      <div className="w-64 bg-gray-100 p-4 border-r">
-        {steps.map((_, index) => (
-          <button
-            key={index}
-            className={`block w-full text-left py-2 px-3 rounded mb-2 ${index === currentStep ? 'bg-blue-500 text-white' : 'hover:bg-gray-200'}`}
-            onClick={() => setCurrentStep(index)}
-          >
-            Шаг {index + 1}
-          </button>
-        ))}
-      </div>
-
-      <main className="flex-1 p-6">
-        <StepComponent />
-
-        <div className="mt-6 flex justify-between items-center">
-          <div className="text-lg font-semibold text-green-600">
-            <TotalPrice />
-          </div>
-          <button
-            disabled={currentStep === 0}
-            onClick={() => setCurrentStep(currentStep - 1)}
-            className="px-4 py-2 bg-gray-300 rounded disabled:opacity-50"
-          >
-            Назад
-          </button>
-
-          {currentStep < steps.length - 1 && (
-            <button
-              onClick={() => setCurrentStep(currentStep + 1)}
-              className="px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
-            >
-              Далее
-            </button>
-          )}
-        </div>
+    <div className="flex overflow-hidden h-full w-full">
+      <main className="flex-grow ">
+        {model && (
+          <div
+            className="w-full h-full bg-cover bg-center bg-no-repeat"
+            style={{
+              backgroundImage: model ? `url(${model.mainImage})` : 'none',
+            }}
+          />
+        )}
       </main>
+      <aside
+        className={`relative flex transition-all duration-500 ${isSidebarOpen ? 'mr-0' : '-mr-[476px]'}`}
+      >
+        {/* Sidebar можно здесь же или отдельно */}
+        <div className="w-15 bg-gray-super-light">
+          <button
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="w-15 h-15 bg-accent-100/80 flex items-center justify-center cursor-pointer text-accent-200"
+            type="button"
+          >
+            <ArrowIcon />
+          </button>
+          <div className="flex flex-col h-full justify-center">
+            {steps.map((_, index) => (
+              <button
+                type="button"
+                key={index}
+                className={`flex w-full text-gray-light px-4.5 py-3.5 cursor-pointer ${index === currentStep && 'bg-accent-200 text-white'}`}
+                onClick={() => setCurrentStep(index)}
+              >
+                {stepsIcons[index]}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="w-[476px] pt-7.5 pb-2 px-9 overflow-y-auto flex flex-col">
+          <div className="h-full">
+            <StepComponent />
+          </div>
+
+          <div className="mt-6 flex justify-between items-center">
+            <div className="text-base">
+              <TotalPrice />
+            </div>
+
+            {currentStep < steps.length - 1 && (
+              <button
+                onClick={() => setCurrentStep(currentStep + 1)}
+                className="px-3 py-3 bg-accent-200 text-white rounded-[10px] hover:bg-accent-800 disabled:opacity-50 transition-colors duration-300 cursor-pointer"
+              >
+                Далее
+              </button>
+            )}
+          </div>
+        </div>
+      </aside>
     </div>
   );
 };

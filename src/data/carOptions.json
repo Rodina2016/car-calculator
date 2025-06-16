@@ -4,7 +4,8 @@
       "id": "zeekr-007-gt",
       "name": "Zeekr 007 GT",
       "price": 17000000,
-      "image": "/images/models/zeekr-007-gt.png",
+      "image": "/images/models/b13e0aff0f94779524fe4491627451b86b71e11e.png",
+      "mainImage": "/images/models/big.png",
       "specs": {
         "range": "620 км",
         "acceleration": "4.5 с до 100 км/ч",
@@ -106,7 +107,8 @@
       "id": "zeekr-009-performance",
       "name": "Zeekr 009 Performance",
       "price": 19500000,
-      "image": "/images/models/zeekr-009-performance.png",
+      "image": "/images/models/8b575ed5fb23534d61916e225bb374b1abe1154f.png",
+      "mainImage": "/images/models/big2.png",
       "specs": {
         "range": "702 км",
         "acceleration": "4.0 с до 100 км/ч",

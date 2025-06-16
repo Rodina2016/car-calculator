@@ -3,6 +3,7 @@ export interface CarModel {
   name: string;
   price: number;
   image: string;
+  mainImage: string;
   specs: {
     range: string;
     acceleration: string;
