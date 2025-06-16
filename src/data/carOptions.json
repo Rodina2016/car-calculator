@@ -1,0 +1,208 @@
+{
+  "models": [
+    {
+      "id": "zeekr-007-gt",
+      "name": "Zeekr 007 GT",
+      "price": 17000000,
+      "image": "/images/models/zeekr-007-gt.png",
+      "specs": {
+        "range": "620 км",
+        "acceleration": "4.5 с до 100 км/ч",
+        "power": "540 л.с.",
+        "description": "Полностью электрический спортивный седан с продвинутыми технологиями"
+      },
+      "availableOptions": {
+        "batteries": [
+          {
+            "id": "battery-std",
+            "name": "Стандартная батарея",
+            "image": "/images/batteries/standard.png",
+            "price": 0
+          },
+          {
+            "id": "battery-max",
+            "name": "Увеличенная батарея",
+            "image": "/images/batteries/max.png",
+            "price": 250000
+          }
+        ],
+        "colors": {
+          "body": [
+            { "id": "silver", "name": "Серебристый", "code": "#C0C0C0", "price": 0 },
+            { "id": "black", "name": "Чёрный", "code": "#000000", "price": 15000 }
+          ],
+          "moldings": [
+            { "id": "chrome", "name": "Хром", "code": "#999999", "price": 0 },
+            { "id": "black", "name": "Чёрный", "code": "#000000", "price": 10000 }
+          ]
+        },
+        "wheels": [
+          {
+            "id": "sport-19",
+            "name": "Спорт 19\"",
+            "image": "/images/wheels/sport-19.png",
+            "price": 50000
+          },
+          {
+            "id": "aero-21",
+            "name": "Аэро 21\"",
+            "image": "/images/wheels/aero-21.png",
+            "price": 90000
+          }
+        ],
+        "interior": {
+          "material": [
+            { "id": "eco-leather", "name": "Эко-кожа", "code": "#A67B5B", "price": 0 },
+            { "id": "nappa", "name": "Наппа", "code": "#ffffff", "price": 100000 }
+          ],
+          "seat": [
+            {
+              "id": "comfort",
+              "name": "Комфорт",
+              "image": "/images/seats/comfort.png",
+              "price": 0
+            },
+            {
+              "id": "sport",
+              "name": "Спорт",
+              "image": "/images/seats/sport.png",
+              "price": 50000
+            }
+          ]
+        },
+        "extras": [
+          {
+            "id": "camera360",
+            "name": "Камера 360",
+            "image": "/images/extras/camera360.png",
+            "price": 20000
+          },
+          {
+            "id": "hud",
+            "name": "HUD проекция",
+            "image": "/images/extras/hud.png",
+            "price": 30000
+          }
+        ],
+        "software": [
+          {
+            "id": "basic",
+            "name": "Базовая",
+            "description": "Стандартные функции",
+            "image": "/images/software/basic.png",
+            "price": 0
+          },
+          {
+            "id": "premium",
+            "name": "Премиум",
+            "description": "Доп. навигация и ассистенты",
+            "image": "/images/software/premium.png",
+            "price": 60000
+          }
+        ]
+      }
+    },
+    {
+      "id": "zeekr-009-performance",
+      "name": "Zeekr 009 Performance",
+      "price": 19500000,
+      "image": "/images/models/zeekr-009-performance.png",
+      "specs": {
+        "range": "702 км",
+        "acceleration": "4.0 с до 100 км/ч",
+        "power": "580 л.с.",
+        "description": "Премиальный электровэн с максимальным комфортом для пассажиров"
+      },
+      "availableOptions": {
+        "batteries": [
+          {
+            "id": "battery-pro",
+            "name": "PRO-батарея",
+            "image": "/images/batteries/pro.png",
+            "price": 0
+          },
+          {
+            "id": "battery-ultra",
+            "name": "ULTRA-батарея",
+            "image": "/images/batteries/ultra.png",
+            "price": 320000
+          }
+        ],
+        "colors": {
+          "body": [
+            { "id": "white-pearl", "name": "Жемчужно-белый", "code": "#f8f8f8", "price": 0 },
+            { "id": "blue-mica", "name": "Синий металлик", "code": "#335577", "price": 20000 }
+          ],
+          "moldings": [
+            { "id": "satin", "name": "Сатин", "code": "#cccccc", "price": 0 },
+            { "id": "black-gloss", "name": "Глянцевый чёрный", "code": "#000000", "price": 12000 }
+          ]
+        },
+        "wheels": [
+          {
+            "id": "comfort-20",
+            "name": "Комфорт 20\"",
+            "image": "/images/wheels/comfort-20.png",
+            "price": 0
+          },
+          {
+            "id": "luxury-22",
+            "name": "Люкс 22\"",
+            "image": "/images/wheels/luxury-22.png",
+            "price": 80000
+          }
+        ],
+        "interior": {
+          "material": [
+            { "id": "vegan-leather", "name": "Веган-кожа", "code": "#d8cab8", "price": 0 },
+            { "id": "alcantara", "name": "Алькантара", "code": "#1e1e1e", "price": 150000 }
+          ],
+          "seat": [
+            {
+              "id": "executive",
+              "name": "Executive",
+              "image": "/images/seats/executive.png",
+              "price": 0
+            },
+            {
+              "id": "executive-massage",
+              "name": "Executive + Массаж",
+              "image": "/images/seats/massage.png",
+              "price": 75000
+            }
+          ]
+        },
+        "extras": [
+          {
+            "id": "fridge",
+            "name": "Мини-холодильник",
+            "image": "/images/extras/fridge.png",
+            "price": 45000
+          },
+          {
+            "id": "curtains",
+            "name": "Электрошторки",
+            "image": "/images/extras/curtains.png",
+            "price": 30000
+          }
+        ],
+        "software": [
+          {
+            "id": "family-pack",
+            "name": "Family Pack",
+            "description": "Развлекательные функции для пассажиров",
+            "image": "/images/software/family.png",
+            "price": 35000
+          },
+          {
+            "id": "nav-assist",
+            "name": "Навигация + Автопилот",
+            "description": "Продвинутая навигация с автоуправлением",
+            "image": "/images/software/nav-assist.png",
+            "price": 90000
+          }
+        ]
+      }
+    }
+  ]
+}

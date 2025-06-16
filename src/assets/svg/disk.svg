@@ -1,0 +1,7 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+<circle cx="16" cy="16" r="14.25" stroke="currentColor" stroke-width="1.5"/>
+<circle cx="16" cy="16" r="11.25" stroke="currentColor" stroke-width="1.5"/>
+<line x1="10.6491" y1="6.62422" x2="21.6491" y2="25.6242" stroke="currentColor" stroke-width="1.5"/>
+<line x1="21.4375" y1="6.36842" x2="10.6529" y2="25.4915" stroke="currentColor" stroke-width="1.5"/>
+<line x1="5" y1="16.25" x2="26.9545" y2="16.25" stroke="currentColor" stroke-width="1.5"/>
+</svg>
