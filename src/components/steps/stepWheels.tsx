@@ -1,27 +1,41 @@
 import { useConfigurator } from '@/context/configuratorContext';
 import carOptions from '@/data/carOptions.json';
+import { WheelOption } from '@/types/types';
+import { useState } from 'react';
+import { OptionItem } from '../optionItem';
 
 export const StepWheels = () => {
   const { config, updateConfig } = useConfigurator();
   const model = carOptions.models.find((m) => m.id === config.modelId);
+  const [name, setName] = useState(model?.availableOptions.wheels[0].name || '');
+  const [price, setPrice] = useState(model?.availableOptions.wheels[0].price || 0);
+
+  const handleWheelChange = (wheel: WheelOption) => {
+    updateConfig('wheelsId', wheel.id);
+    setName(wheel.name);
+    setPrice(wheel.price);
+  };
   if (!model) return null;
 
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Выбор дисков</h2>
-      <div className="grid grid-cols-2 gap-4">
+    <>
+      <h2 className="text-2xl text-2xl/8 mb-2 font-medium">Диски</h2>
+      <div className="text-base text-base/6 mb-2 font-medium">
+        ₽ {price.toLocaleString('ru-RU')}
+      </div>
+      <div className="mb-3 text-base/6">{name}</div>
+      <div className="flex items-center gap-6">
         {model.availableOptions.wheels.map((wheel) => (
-          <div
-            key={wheel.id}
-            onClick={() => updateConfig('wheelsId', wheel.id)}
-            className={`border rounded p-4 cursor-pointer ${config.wheelsId === wheel.id ? 'border-blue-500' : ''}`}
-          >
-            <img src={wheel.image} alt={wheel.name} className="w-full h-20 object-contain" />
-            <div className="mt-2">{wheel.name}</div>
-            <div className="text-sm text-gray-500">{wheel.price.toLocaleString()} ₽</div>
+          <div key={wheel.name}>
+            <OptionItem
+              onClick={() => handleWheelChange(wheel)}
+              isActive={config.wheelsId === wheel.id}
+            >
+              <img src={wheel.image} alt={wheel.name} className="max-w-none h-12" />
+            </OptionItem>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };

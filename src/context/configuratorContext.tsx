@@ -8,6 +8,7 @@ interface Config {
   colorMoldingsId?: string;
   wheelsId?: string;
   interiorMaterialId?: string;
+  intelligentDrivingSolutionId?: string;
   seatId?: string;
   extrasIds: string[];
   softwareId?: string;

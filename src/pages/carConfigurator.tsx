@@ -15,6 +15,7 @@ import RudderIcon from '@/assets/svg/rudder.svg?react';
 import OptionsIcon from '@/assets/svg/options.svg?react';
 import CarbonIcon from '@/assets/svg/carbon.svg?react';
 import ArrowIcon from '@/assets/svg/arrow.svg?react';
+import Logo from '@/assets/svg/logo.svg?react';
 import { useState } from 'react';
 import carOptions from '@/data/carOptions.json';
 
@@ -47,6 +48,17 @@ export const CarConfigurator = () => {
   return (
     <div className="flex overflow-hidden h-full w-full">
       <main className="flex-grow ">
+        <div className="flex">
+          <button
+            onClick={() => window.history.back()}
+            className="cursor-pointer flex justify-center items-center text-accent-200 w-15 h-15 ml-7.5"
+          >
+            <ArrowIcon className="rotate-180 " />
+          </button>
+          <div className="flex items-center justify-center w-full">
+            <Logo />
+          </div>
+        </div>
         {model && (
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
@@ -88,7 +100,7 @@ export const CarConfigurator = () => {
           </div>
 
           <div className="mt-6 flex justify-between items-center">
-            <div className="text-base">
+            <div className="text-base font-semibold">
               <TotalPrice />
             </div>
 

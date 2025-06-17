@@ -12,6 +12,7 @@ export interface CarModel {
   };
   availableOptions: {
     batteries: BatteryOption[];
+    intelligentDrivingSolution?: IntelligentDrivingSolution[];
     colors: {
       body: ColorOption[];
       moldings: ColorOption[];
@@ -71,6 +72,13 @@ export interface ExtraOption {
 export interface SoftwareOption {
   id: string;
   name: string;
+  description: string;
+  image: string;
+  price: number;
+}
+
+export interface IntelligentDrivingSolution {
+  id: string;
   description: string;
   image: string;
   price: number;

@@ -3,9 +3,7 @@ import carOptions from '@/data/carOptions.json';
 import { getDefaultConfigForModel } from '@/shared/helpers/getDefaultConfigForModel';
 import { CarModel } from '@/types/types';
 import { useEffect, useState } from 'react';
-
-const modelStyles = '';
-const activeModelStyles = 'rounded-full border border-gray-light bg-gray-medium';
+import { OptionItem } from '../optionItem';
 
 export const StepModel = () => {
   const { setFullConfig, config } = useConfigurator();
@@ -27,22 +25,18 @@ export const StepModel = () => {
 
   return (
     <>
-      <h2 className="text-4xl text-center font-bold mb-4 uppercase">Модель</h2>
+      <h1 className="text-4xl text-center font-medium mb-4 uppercase">Все модель</h1>
       <div className="mt-9.6 mb-4 text-xl font-semibold">{name}</div>
-      <div className="text-base mb-3 font-medium">₽ {price}</div>
+      <div className="text-base mb-3 font-medium">₽ {price.toLocaleString('ru-RU')}</div>
       <div className="flex items-center gap-6">
         {carOptions.models.map((model) => (
-          <div key={model.id} className={` `} onClick={() => handleModelChange(model)}>
-            <div
-              className={`w-15 h-15 flex items-center justify-center ${config.modelId === model.id ? activeModelStyles : modelStyles}`}
-            >
-              <div
-                className={`w-12 h-12 rounded-full border overflow-hidden flex items-center justify-center ${config.modelId === model.id ? 'border-white' : 'border-gray-medium'}`}
-              >
-                <img src={model.image} alt={model.name} className="max-w-none h-12" />
-              </div>
-            </div>
-          </div>
+          <OptionItem
+            key={model.id}
+            onClick={() => handleModelChange(model)}
+            isActive={config.modelId === model.id}
+          >
+            <img src={model.image} alt={model.name} className="max-w-none h-12" />
+          </OptionItem>
         ))}
       </div>
     </>

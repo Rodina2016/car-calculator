@@ -1,34 +1,94 @@
 import { useConfigurator } from '@/context/configuratorContext';
 import carOptions from '@/data/carOptions.json';
+import { OptionItem } from '../optionItem';
+import { useState } from 'react';
+import { BatteryOption } from '@/types/types';
 
 export const StepBattery = () => {
   const { config, updateConfig } = useConfigurator();
+
   const model = carOptions.models.find((m) => m.id === config.modelId);
+  const [name, setName] = useState(model?.availableOptions.batteries[0].name || '');
+  const [price, setPrice] = useState(model?.availableOptions.batteries[0].price || 0);
+
+  const handleBatteryChange = (battery: BatteryOption) => {
+    updateConfig('batteryId', battery.id);
+    setName(battery.name);
+    setPrice(battery.price);
+  };
   if (!model) return null;
 
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Выбор батареи</h2>
-      <p className="text-sm mb-2">{model.specs.description}</p>
-      <ul className="mb-4 text-sm text-gray-700 space-y-1">
-        <li>Запас хода: {model.specs.range}</li>
-        <li>Разгон: {model.specs.acceleration}</li>
-        <li>Мощность: {model.specs.power}</li>
+      <h1 className="text-4xl text-center font-medium mb-4 uppercase">{model.name}</h1>
+      <p className="bg-gray-super-light rounded text-base rounded-[20px] p-4 mb-5">
+        {model.specs.description}
+      </p>
+      <ul className="mb-10 text-base flex gap-6 flex justify-center">
+        <li className="flex flex-col items-center">
+          <span className="text-xl font-medium">{model.specs.range}</span>
+          <span>запас&nbsp;хода</span>
+        </li>
+        <li className="flex flex-col items-center">
+          <span className="text-xl font-medium">{model.specs.acceleration}</span>
+          <span>0-100&nbsp;км/ч</span>
+        </li>
+        <li className="flex flex-col items-center">
+          <span className="text-xl font-medium">{model.specs.power}</span>
+          <span>мощность</span>
+        </li>
       </ul>
 
-      <div className="grid grid-cols-2 gap-4">
-        {model.availableOptions.batteries.map((battery) => (
-          <div
-            key={battery.id}
-            className={`border rounded p-4 cursor-pointer ${config.batteryId === battery.id ? 'border-blue-500' : ''}`}
-            onClick={() => updateConfig('batteryId', battery.id)}
-          >
-            <img src={battery.image} alt={battery.name} className="w-full h-20 object-contain" />
-            <div className="mt-2">{battery.name}</div>
-            <div className="text-sm text-gray-500">{battery.price.toLocaleString()} ₽</div>
-          </div>
-        ))}
+      <div className="mb-10">
+        <h2 className="text-2xl text-2xl/8 mb-2 font-medium">Емкость аккумулятора</h2>
+        <div className="text-base text-base/6 mb-2 font-medium">
+          ₽ {price.toLocaleString('ru-RU')}
+        </div>
+        <div className="mb-3 text-base/6">{name}</div>
+
+        <div className="flex items-center gap-6">
+          {model.availableOptions.batteries.map((battery) => {
+            return (
+              <div key={battery.name}>
+                <OptionItem
+                  onClick={() => handleBatteryChange(battery)}
+                  isActive={config.batteryId === battery.id}
+                >
+                  <img src={battery.image} alt={battery.name} className="max-w-none h-12" />
+                </OptionItem>
+              </div>
+            );
+          })}
+        </div>
       </div>
+
+      {model.availableOptions.intelligentDrivingSolution && (
+        <div className="mb-10">
+          <h2 className="text-2xl text-2xl/8 mb-2 font-medium">
+            Интеллектуальное решение для вождения*
+          </h2>
+          <div className="text-base text-base/6 mb-2 font-medium">
+            {model.availableOptions?.intelligentDrivingSolution[0].price > 0
+              ? `₽ ${price.toLocaleString('ru-RU')}`
+              : '*Включено в стоимость'}
+          </div>
+          <div className="mb-3 text-base/6">
+            {model.availableOptions.intelligentDrivingSolution[0].description}
+          </div>
+
+          <div className="flex items-center gap-6">
+            {model.availableOptions.intelligentDrivingSolution.map((option) => {
+              return (
+                <div key={option.description}>
+                  <OptionItem isActive>
+                    <img src={option.image} alt={option.description} className="max-w-none h-12" />
+                  </OptionItem>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
