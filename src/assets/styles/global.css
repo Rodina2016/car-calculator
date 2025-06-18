@@ -1,5 +1,9 @@
 @import 'tailwindcss';
 
+@plugin 'tailwind-scrollbar' {
+  nocompatible: true;
+}
+
 @theme {
   --color-gray-super-light: #f9f9f9;
   --color-gray-light: #64696b;
@@ -23,4 +27,8 @@ body {
 
 #root {
   height: 100%;
+}
+
+p {
+  margin-top: 8px;
 }

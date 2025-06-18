@@ -1,5 +1,5 @@
 import { useConfigurator } from '@/context/configuratorContext';
-import carOptions from '@/data/carOptions.json';
+import { carOptions } from '@/data/carOptions';
 import { getDefaultConfigForModel } from '@/shared/helpers/getDefaultConfigForModel';
 import { CarModel } from '@/types/types';
 import { useEffect, useState } from 'react';

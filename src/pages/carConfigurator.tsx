@@ -17,7 +17,8 @@ import CarbonIcon from '@/assets/svg/carbon.svg?react';
 import ArrowIcon from '@/assets/svg/arrow.svg?react';
 import Logo from '@/assets/svg/logo.svg?react';
 import { useState } from 'react';
-import carOptions from '@/data/carOptions.json';
+import { getCurrentBackgroundImage } from '@/shared/helpers/getCurrentBackgroundImage';
+import { carOptions } from '@/data/carOptions';
 
 const steps = [
   StepModel,
@@ -44,6 +45,7 @@ export const CarConfigurator = () => {
   const { currentStep, setCurrentStep, config } = useConfigurator();
   const StepComponent = steps[currentStep];
   const model = carOptions.models.find((m) => m.id === config.modelId);
+  const bgImage = getCurrentBackgroundImage(config, currentStep);
 
   return (
     <div className="flex overflow-hidden h-full w-full">
@@ -62,9 +64,7 @@ export const CarConfigurator = () => {
         {model && (
           <div
             className="w-full h-full bg-cover bg-center bg-no-repeat"
-            style={{
-              backgroundImage: model ? `url(${model.mainImage})` : 'none',
-            }}
+            style={{ backgroundImage: `url(${bgImage})` }}
           />
         )}
       </main>
@@ -95,7 +95,7 @@ export const CarConfigurator = () => {
         </div>
 
         <div className="w-[476px] pt-7.5 pb-2 px-9 overflow-y-auto flex flex-col">
-          <div className="h-full">
+          <div className="h-full overflow-y-auto scrollbar-none">
             <StepComponent />
           </div>
 

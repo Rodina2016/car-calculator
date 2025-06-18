@@ -1,5 +1,5 @@
 import { useConfigurator } from '@/context/configuratorContext';
-import carOptions from '@/data/carOptions.json';
+import { carOptions } from '@/data/carOptions';
 
 export const TotalPrice = () => {
   const { config } = useConfigurator();

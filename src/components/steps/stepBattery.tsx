@@ -1,8 +1,8 @@
 import { useConfigurator } from '@/context/configuratorContext';
-import carOptions from '@/data/carOptions.json';
 import { OptionItem } from '../optionItem';
 import { useState } from 'react';
 import { BatteryOption } from '@/types/types';
+import { carOptions } from '@/data/carOptions';
 
 export const StepBattery = () => {
   const { config, updateConfig } = useConfigurator();

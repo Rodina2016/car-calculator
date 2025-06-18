@@ -1,5 +1,5 @@
 import { useConfigurator } from '@/context/configuratorContext';
-import carOptions from '@/data/carOptions.json';
+import { carOptions } from '@/data/carOptions';
 import { WheelOption } from '@/types/types';
 import { useState } from 'react';
 import { OptionItem } from '../optionItem';
@@ -19,7 +19,7 @@ export const StepWheels = () => {
 
   return (
     <>
-      <h2 className="text-2xl text-2xl/8 mb-2 font-medium">Диски</h2>
+      <h2 className="text-xl text-2xl/8 mb-2 font-medium">Диски</h2>
       <div className="text-base text-base/6 mb-2 font-medium">
         ₽ {price.toLocaleString('ru-RU')}
       </div>

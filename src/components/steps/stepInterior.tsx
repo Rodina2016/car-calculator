@@ -1,5 +1,8 @@
 import { useConfigurator } from '@/context/configuratorContext';
-import carOptions from '@/data/carOptions.json';
+import { carOptions } from '@/data/carOptions';
+import { OptionItem } from '../optionItem';
+
+import { useOptionState } from '@/shared/hooks/useOptionState';
 
 export const StepInterior = () => {
   const { config, updateConfig } = useConfigurator();
@@ -7,37 +10,69 @@ export const StepInterior = () => {
   if (!model) return null;
   const { material, seat } = model.availableOptions.interior;
 
+  const {
+    name: nameMaterial,
+    price: priceMaterial,
+    handleChange: handleMaterialChange,
+  } = useOptionState(material, 'interiorMaterialId', updateConfig);
+
+  const {
+    name: nameSeat,
+    price: priceSeat,
+    handleChange: handleSeatChange,
+  } = useOptionState(seat, 'seatId', updateConfig);
+
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">Выбор интерьера</h2>
-
-      <h3 className="text-lg mb-2">Материал</h3>
-      <div className="flex gap-4 mb-4">
-        {material.map((mat) => (
-          <div
-            key={mat.id}
-            onClick={() => updateConfig('interiorMaterialId', mat.id)}
-            className={`w-12 h-12 rounded-full cursor-pointer border-4 ${config.interiorMaterialId === mat.id ? 'border-blue-500' : 'border-transparent'}`}
-            style={{ backgroundColor: mat.code }}
-            title={mat.name}
-          />
-        ))}
+    <>
+      <div className="mb-10">
+        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Салон</h2>
+        <div className="text-base text-base/6 mb-2 font-medium">
+          ₽ {priceMaterial.toLocaleString('ru-RU')}
+        </div>
+        <div className="mb-3 text-base/6">{nameMaterial}</div>
+        <div className="flex items-center gap-6">
+          {material.map((mat) => (
+            <div key={mat.name}>
+              <OptionItem
+                onClick={() => handleMaterialChange(mat)}
+                isActive={config.interiorMaterialId === mat.id}
+              >
+                <div
+                  className="w-full h-full rounded-full"
+                  style={
+                    mat.code.includes(',')
+                      ? {
+                          backgroundImage: `linear-gradient(to bottom, ${mat.code
+                            .split(',')
+                            .map((c) => c.trim())
+                            .slice(0, 2)
+                            .join(' 50%, ')} 50%)`,
+                        }
+                      : { backgroundColor: mat.code }
+                  }
+                />
+              </OptionItem>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <h3 className="text-lg mb-2">Сиденья</h3>
-      <div className="grid grid-cols-2 gap-4">
-        {seat.map((s) => (
-          <div
-            key={s.id}
-            onClick={() => updateConfig('seatId', s.id)}
-            className={`border rounded p-4 cursor-pointer ${config.seatId === s.id ? 'border-blue-500' : ''}`}
-          >
-            <img src={s.image} alt={s.name} className="w-full h-20 object-contain" />
-            <div className="mt-2">{s.name}</div>
-            <div className="text-sm text-gray-500">{s.price.toLocaleString()} ₽</div>
-          </div>
-        ))}
+      <div className="mb-10">
+        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Материал сиденья</h2>
+        <div className="text-base text-base/6 mb-2 font-medium">
+          ₽ {priceSeat.toLocaleString('ru-RU')}
+        </div>
+        <div className="mb-3 text-base/6">{nameSeat}</div>
+        <div className="flex items-center gap-6">
+          {seat.map((s) => (
+            <div key={s.name}>
+              <OptionItem onClick={() => handleSeatChange(s)} isActive={config.seatId === s.id}>
+                <img src={s.image} alt={s.name} className="max-w-none h-12" />
+              </OptionItem>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };

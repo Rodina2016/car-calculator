@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface CarModel {
   id: string;
   name: string;
@@ -32,6 +34,7 @@ export interface BatteryOption {
   name: string;
   image: string;
   price: number;
+  mainImage: string;
 }
 
 export interface ColorOption {
@@ -39,6 +42,7 @@ export interface ColorOption {
   name: string;
   code: string;
   price: number;
+  mainImage: string;
 }
 
 export interface WheelOption {
@@ -46,6 +50,7 @@ export interface WheelOption {
   name: string;
   image: string;
   price: number;
+  mainImage: string;
 }
 
 export interface InteriorMaterialOption {
@@ -53,6 +58,7 @@ export interface InteriorMaterialOption {
   name: string;
   code: string;
   price: number;
+  mainImage: string;
 }
 
 export interface SeatOption {
@@ -60,6 +66,7 @@ export interface SeatOption {
   name: string;
   image: string;
   price: number;
+  mainImage: string;
 }
 
 export interface ExtraOption {
@@ -67,6 +74,8 @@ export interface ExtraOption {
   name: string;
   image: string;
   price: number;
+  mainImage: string;
+  description: ReactNode;
 }
 
 export interface SoftwareOption {
@@ -75,6 +84,7 @@ export interface SoftwareOption {
   description: string;
   image: string;
   price: number;
+  mainImage: string;
 }
 
 export interface IntelligentDrivingSolution {
@@ -82,4 +92,5 @@ export interface IntelligentDrivingSolution {
   description: string;
   image: string;
   price: number;
+  mainImage: string;
 }

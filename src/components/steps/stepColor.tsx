@@ -1,5 +1,5 @@
 import { useConfigurator } from '@/context/configuratorContext';
-import carOptions from '@/data/carOptions.json';
+import { carOptions } from '@/data/carOptions';
 import { ColorOption } from '@/types/types';
 import { useState } from 'react';
 import { OptionItem } from '../optionItem';
@@ -31,7 +31,7 @@ export const StepColor = () => {
   return (
     <>
       <div className="mb-10">
-        <h2 className="text-2xl text-2xl/8 mb-2 font-medium">Цвет кузова</h2>
+        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Цвет кузова</h2>
         <div className="text-base text-base/6 mb-2 font-medium">
           ₽ {priceBody.toLocaleString('ru-RU')}
         </div>
@@ -50,7 +50,7 @@ export const StepColor = () => {
                       ? { backgroundImage: `linear-gradient(to bottom, ${body.code})` }
                       : { backgroundColor: body.code }
                   }
-                ></div>
+                />
               </OptionItem>
             </div>
           ))}
@@ -58,7 +58,7 @@ export const StepColor = () => {
       </div>
 
       <div className="mb-10">
-        <h2 className="text-2xl text-2xl/8 mb-2 font-medium">Цвет молдингов</h2>
+        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Цвет молдингов</h2>
         <div className="text-base text-base/6 mb-2 font-medium">
           ₽ {priceMolding.toLocaleString('ru-RU')}
         </div>

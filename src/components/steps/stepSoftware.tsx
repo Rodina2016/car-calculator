@@ -1,28 +1,37 @@
 import { useConfigurator } from '@/context/configuratorContext';
-import carOptions from '@/data/carOptions.json';
+import { carOptions } from '@/data/carOptions';
+import { OptionItem } from '../optionItem';
+import { useOptionState } from '@/shared/hooks/useOptionState';
+import { renderPrice } from '@/shared/helpers/renderPrice';
 
 export const StepSoftware = () => {
   const { config, updateConfig } = useConfigurator();
   const model = carOptions.models.find((m) => m.id === config.modelId);
   if (!model) return null;
 
+  const { name, price, handleChange } = useOptionState(
+    model.availableOptions.software,
+    'softwareId',
+    updateConfig,
+  );
+
   return (
     <div>
-      <h2 className="text-xl font-bold mb-4">Программное обеспечение</h2>
-      <div className="grid grid-cols-2 gap-4">
+      <h2 className="text-xl text-2xl/8 mb-2 font-medium">Программное обеспечение*</h2>
+      <div className="text-base text-base/6 mb-2 font-medium">{renderPrice(price)}</div>
+      <div className="mb-3 text-base/6">{name}</div>
+      <div className="flex items-center gap-6">
         {model.availableOptions.software.map((soft) => (
-          <div
-            key={soft.id}
-            onClick={() => updateConfig('softwareId', soft.id)}
-            className={`border rounded p-4 cursor-pointer ${config.softwareId === soft.id ? 'border-blue-500' : ''}`}
-          >
-            <img src={soft.image} alt={soft.name} className="w-full h-20 object-contain" />
-            <div className="mt-2 font-semibold">{soft.name}</div>
-            <div className="text-sm text-gray-500">{soft.description}</div>
-            <div className="text-sm text-gray-500">{soft.price.toLocaleString()} ₽</div>
+          <div key={soft.name}>
+            <OptionItem
+              onClick={() => handleChange(soft)}
+              isActive={config.interiorMaterialId === soft.id}
+            >
+              <img src={soft.image} alt={soft.name} className="max-w-none h-12" />
+            </OptionItem>
           </div>
         ))}
-      </div>
+      </div>{' '}
     </div>
   );
 };

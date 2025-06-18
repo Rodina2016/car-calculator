@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import type { ReactNode } from 'react';
 
-interface Config {
+export interface Config {
   modelId?: string;
   batteryId?: string;
   colorBodyId?: string;
@@ -20,13 +20,50 @@ interface ConfiguratorContextType {
   setFullConfig: (newConfig: Partial<Config>) => void;
   currentStep: number;
   setCurrentStep: (step: number) => void;
+  wasRestoredFromStorage: boolean;
 }
+
+const CONFIG_KEY = 'configurator_config';
+const STEP_KEY = 'configurator_step';
 
 const ConfiguratorContext = createContext<ConfiguratorContextType | undefined>(undefined);
 
 export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
-  const [config, setConfig] = useState<Config>({ extrasIds: [] });
-  const [currentStep, setCurrentStep] = useState(0);
+  const [wasRestoredFromStorage] = useState(() => {
+    try {
+      const stored = localStorage.getItem(CONFIG_KEY);
+      return !!stored;
+    } catch {
+      return false;
+    }
+  });
+
+  const [config, setConfig] = useState<Config>(() => {
+    try {
+      const stored = localStorage.getItem(CONFIG_KEY);
+      return stored ? JSON.parse(stored) : { extrasIds: [] };
+    } catch {
+      return { extrasIds: [] };
+    }
+  });
+
+  const [currentStep, setCurrentStep] = useState<number>(() => {
+    try {
+      const stored = localStorage.getItem(STEP_KEY);
+      return stored ? parseInt(stored, 10) : 0;
+    } catch {
+      return 0;
+    }
+  });
+
+  // сохраняем при изменении
+  useEffect(() => {
+    localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
+  }, [config]);
+
+  useEffect(() => {
+    localStorage.setItem(STEP_KEY, String(currentStep));
+  }, [currentStep]);
 
   const updateConfig = (key: keyof Config, value: any) => {
     setConfig((prev) => ({ ...prev, [key]: value }));
@@ -35,9 +72,17 @@ export const ConfiguratorProvider = ({ children }: { children: ReactNode }) => {
   const setFullConfig = (newConfig: Partial<Config>) => {
     setConfig((prev) => ({ ...prev, ...newConfig }));
   };
+
   return (
     <ConfiguratorContext.Provider
-      value={{ config, updateConfig, setFullConfig, currentStep, setCurrentStep }}
+      value={{
+        config,
+        updateConfig,
+        setFullConfig,
+        currentStep,
+        setCurrentStep,
+        wasRestoredFromStorage,
+      }}
     >
       {children}
     </ConfiguratorContext.Provider>
