@@ -22,6 +22,7 @@ import { useState } from 'react';
 import { getCurrentBackgroundImage } from '@/shared/helpers/getCurrentBackgroundImage';
 import { carOptions } from '@/data/carOptions';
 import { StepFinal } from '@/components/steps/stepFinal';
+import { NextStepButton } from '@/components/nextStepButton';
 
 const steps = [
   StepModel,
@@ -112,22 +113,10 @@ export const CarConfigurator = () => {
               <TotalPrice />
             </div>
 
-            {currentStep < steps.length - 1 ? (
-              <button
-                onClick={() => setCurrentStep(currentStep + 1)}
-                className="text-sm px-3 py-3 bg-accent-200 text-white rounded-[10px] hover:bg-accent-800 disabled:opacity-50 transition-colors duration-300 cursor-pointer"
-              >
-                Далее
-              </button>
-            ) : (
-              <button
-                //тут будет вызов формы обратной связи
-                onClick={() => {}}
-                className="px-3 py-3 bg-accent-200 text-white rounded-[10px] hover:bg-accent-800 disabled:opacity-50 transition-colors duration-300 cursor-pointer"
-              >
-                Далее
-              </button>
-            )}
+            <NextStepButton
+              isLastStep={currentStep === steps.length - 1}
+              onNext={() => setCurrentStep(currentStep + 1)}
+            />
           </div>
         </div>
       </aside>

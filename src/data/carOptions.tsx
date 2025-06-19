@@ -50,7 +50,7 @@ export const carOptions: { models: CarModel[] } = {
             },
             {
               id: 'zeekr-007-gt-body2',
-              name: 'Серебристый',
+              name: 'Зеленый',
               code: '#ADB29D, #494D3D',
               price: 15000,
             },
