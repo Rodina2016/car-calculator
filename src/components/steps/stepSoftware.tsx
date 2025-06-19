@@ -17,17 +17,16 @@ export const StepSoftware = () => {
 
   return (
     <div>
-      <h2 className="text-xl text-2xl/8 mb-2 font-medium">Программное обеспечение*</h2>
-      <div className="text-base text-base/6 mb-2 font-medium">{renderPrice(price)}</div>
-      <div className="mb-3 text-base/6">{name}</div>
-      <div className="flex items-center gap-6">
+      <h2 className="text-[22px] lg:text-xl leading-[140%] mb-2 font-medium">
+        Программное обеспечение*
+      </h2>
+      <div className="text-lg lg:text-base text-base/6 mb-2 font-medium">{renderPrice(price)}</div>
+      <div className="mb-3 text-sm text-base/6">{name}</div>
+      <div className="flex items-center gap-3 lg:gap-6">
         {model.availableOptions.software.map((soft) => (
           <div key={soft.name}>
-            <OptionItem
-              onClick={() => handleChange(soft)}
-              isActive={config.interiorMaterialId === soft.id}
-            >
-              <img src={soft.image} alt={soft.name} className="max-w-none h-12" />
+            <OptionItem onClick={() => handleChange(soft)} isActive={config.softwareId === soft.id}>
+              <img src={soft.image} alt={soft.name} className="max-w-none h-full" />
             </OptionItem>
           </div>
         ))}

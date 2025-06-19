@@ -19,19 +19,19 @@ export const StepWheels = () => {
 
   return (
     <>
-      <h2 className="text-xl text-2xl/8 mb-2 font-medium">Диски</h2>
-      <div className="text-base text-base/6 mb-2 font-medium">
+      <h2 className="text-[22px] lg:text-xl leading-[140%] mb-2 font-medium">Диски</h2>
+      <div className="text-lg lg:text-base text-base/6 mb-2 font-medium">
         ₽ {price.toLocaleString('ru-RU')}
       </div>
-      <div className="mb-3 text-base/6">{name}</div>
-      <div className="flex items-center gap-6">
+      <div className="mb-3 text-sm text-base/6">{name}</div>
+      <div className="flex items-center gap-3 lg:gap-6">
         {model.availableOptions.wheels.map((wheel) => (
           <div key={wheel.name}>
             <OptionItem
               onClick={() => handleWheelChange(wheel)}
               isActive={config.wheelsId === wheel.id}
             >
-              <img src={wheel.image} alt={wheel.name} className="max-w-none h-12" />
+              <img src={wheel.image} alt={wheel.name} className="max-w-none h-full" />
             </OptionItem>
           </div>
         ))}

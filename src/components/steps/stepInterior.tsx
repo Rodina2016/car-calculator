@@ -24,13 +24,13 @@ export const StepInterior = () => {
 
   return (
     <>
-      <div className="mb-10">
-        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Салон</h2>
-        <div className="text-base text-base/6 mb-2 font-medium">
+      <div className="mb-3 lg:mb-10">
+        <h2 className="text-[22px] lg:text-xl leading-[140%] mb-2 font-medium">Салон</h2>
+        <div className="text-lg lg:text-base text-base/6 mb-2 font-medium">
           ₽ {priceMaterial.toLocaleString('ru-RU')}
         </div>
         <div className="mb-3 text-base/6">{nameMaterial}</div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 lg:gap-6">
           {material.map((mat) => (
             <div key={mat.name}>
               <OptionItem
@@ -57,17 +57,17 @@ export const StepInterior = () => {
         </div>
       </div>
 
-      <div className="mb-10">
-        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Материал сиденья</h2>
-        <div className="text-base text-base/6 mb-2 font-medium">
+      <div className="mb-3 lg:mb-10">
+        <h2 className="text-[22px] lg:text-xl leading-[140%] mb-2 font-medium">Материал сиденья</h2>
+        <div className="text-lg lg:text-base text-base/6 mb-2 font-medium">
           ₽ {priceSeat.toLocaleString('ru-RU')}
         </div>
         <div className="mb-3 text-base/6">{nameSeat}</div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 lg:gap-6">
           {seat.map((s) => (
             <div key={s.name}>
               <OptionItem onClick={() => handleSeatChange(s)} isActive={config.seatId === s.id}>
-                <img src={s.image} alt={s.name} className="max-w-none h-12" />
+                <img src={s.image} alt={s.name} className="max-w-none h-full" />
               </OptionItem>
             </div>
           ))}

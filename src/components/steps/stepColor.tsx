@@ -3,6 +3,7 @@ import { carOptions } from '@/data/carOptions';
 import { ColorOption } from '@/types/types';
 import { useState } from 'react';
 import { OptionItem } from '../optionItem';
+import { renderPrice } from '@/shared/helpers/renderPrice';
 
 export const StepColor = () => {
   const { config, updateConfig } = useConfigurator();
@@ -30,13 +31,13 @@ export const StepColor = () => {
 
   return (
     <>
-      <div className="mb-10">
-        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Цвет кузова</h2>
-        <div className="text-base text-base/6 mb-2 font-medium">
-          ₽ {priceBody.toLocaleString('ru-RU')}
+      <div className="mb-3 lg:mb-10">
+        <h2 className="text-[22px] lg:text-xl leading-[140%] mb-2 font-medium">Цвет кузова</h2>
+        <div className="text-lg lg:text-base text-base/6 mb-2 font-medium">
+          {renderPrice(priceBody)}
         </div>
         <div className="mb-3 text-base/6">{nameBody}</div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3 lg:gap-6">
           {colors.body.map((body) => (
             <div key={body.name}>
               <OptionItem
@@ -57,13 +58,13 @@ export const StepColor = () => {
         </div>
       </div>
 
-      <div className="mb-10">
-        <h2 className="text-xl text-2xl/8 mb-2 font-medium">Цвет молдингов</h2>
-        <div className="text-base text-base/6 mb-2 font-medium">
-          ₽ {priceMolding.toLocaleString('ru-RU')}
+      <div className="mb-3 lg:mb-10">
+        <h2 className="text-[22px] lg:text-xl leading-[140%] mb-2 font-medium">Цвет молдингов</h2>
+        <div className="text-lg lg:text-base text-base/6 mb-2 font-medium">
+          {renderPrice(priceMolding)}
         </div>
-        <div className="mb-3 text-base/6">{nameMolding}</div>
-        <div className="flex items-center gap-6">
+        <div className="mb-3 text-sm text-base/6">{nameMolding}</div>
+        <div className="flex items-center gap-3 lg:gap-6">
           {colors.moldings.map((molding) => (
             <div key={molding.name}>
               <OptionItem

@@ -37,8 +37,8 @@ export const StepExtras = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-medium mb-4">Дополнительные опции</h2>
-      <div className="flex flex-col gap-8">
+      <h2 className="text-[22px] lg:text-xl font-medium mb-4">Дополнительные опции</h2>
+      <div className="flex flex-col gap-3 lg:gap-8">
         {model.availableOptions.extras.map((extra) => {
           const included = extra.price === 0;
           const selected = isSelected(extra.id);
@@ -49,13 +49,13 @@ export const StepExtras = () => {
               onClick={() => setModalExtra(extra)}
               className={`rounded-[20px] overflow-hidden relative cursor-pointer`}
             >
-              <div className="h-[205px]">
+              <div className="max-h-[205px]">
                 <img src={extra.image} alt={extra.name} className="w-full h-full object-contain" />
               </div>
 
               <div className="bg-gray-super-light p-4 flex justify-between items-center">
                 <div>
-                  <div className="font-base font-medium">{extra.name}</div>
+                  <div className="text-lg lg:font-base font-medium">{extra.name}</div>
                   <div className="text-sm mt-2">{renderPrice(extra.price)}</div>
                 </div>
 
@@ -84,7 +84,7 @@ export const StepExtras = () => {
         <div className="fixed inset-0 bg-black/40" aria-hidden="true" />
         <div className="fixed inset-0 flex items-center justify-center p-4">
           {modalExtra && (
-            <Dialog.Panel className="bg-white rounded-xl max-w-[484px] w-full pt-7.5 px-10 pb-10 relative">
+            <Dialog.Panel className="bg-white rounded-xl max-w-[484px] w-full pt-2.5 pb-5 px-5 lg:pt-7.5 lg:px-10 lg:pb-10 relative">
               <button
                 onClick={() => setModalExtra(null)}
                 className="absolute top-4 right-4 cursor-pointer"
@@ -92,10 +92,10 @@ export const StepExtras = () => {
                 <CrossIcon width={'14px'} height={'14px'} />
               </button>
 
-              <h3 className="text-xl font-medium mb-2">{modalExtra.name}</h3>
+              <h3 className="text-lg lg:text-xl font-medium mb-2">{modalExtra.name}</h3>
               <div className="text-sm mb-5">{renderPrice(modalExtra.price)}</div>
-              <div className="max-h-[330px]  overflow-y-auto scrollbar-none">
-                <div className="w-full h-52 rounded-xl overflow-hidden mb-5">
+              <div className="max-h-[370px] lg:max-h-[330px] overflow-y-auto scrollbar-none">
+                <div className="w-full max-h-[205px] rounded-xl overflow-hidden mb-5">
                   <img src={modalExtra.image} alt={modalExtra.name} className="w-full" />
                 </div>
                 <div className="mb-5">{modalExtra.description}</div>
@@ -104,13 +104,13 @@ export const StepExtras = () => {
               {isSelected(modalExtra.id) ? (
                 <button
                   disabled
-                  className="w-full bg-gray-medium text-gray-dark py-5.5 rounded-[10px] cursor-not-allowed"
+                  className="w-full bg-gray-medium text-gray-dark py-3.5 lg:py-5.5 rounded-[10px] cursor-not-allowed"
                 >
                   Включено
                 </button>
               ) : (
                 <button
-                  className="w-full bg-accent-200 text-sm text-white py-5.5 rounded-[10px] hover:bg-accent-800 disabled:opacity-50 transition-colors duration-300 cursor-pointer"
+                  className="w-full bg-accent-200 text-sm text-white py-3.5 lg:py-5.5 rounded-[10px] hover:bg-accent-800 disabled:opacity-50 transition-colors duration-300 cursor-pointer"
                   onClick={() => {
                     toggleExtra(modalExtra.id);
                     setModalExtra(null);

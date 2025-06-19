@@ -19,7 +19,14 @@ export const getCurrentBackgroundImage = (config: Config, currentStep: number): 
     case 2: {
       const color = opts.colors.body.find((c) => c.id === config.colorBodyId);
       const molding = opts.colors.moldings.find((m) => m.id === config.colorMoldingsId);
-      return molding?.mainImage || color?.mainImage || model.mainImage;
+      console.log('config.colorBodyId', config.colorBodyId);
+      console.log('config.colorMoldingsId', config.colorMoldingsId);
+
+      const combo = opts.colors.combinations?.find(
+        (c) => c.bodyId === config.colorBodyId && c.moldingId === config.colorMoldingsId,
+      );
+
+      return combo?.mainImage || model.mainImage;
     }
 
     case 3: {
@@ -29,8 +36,7 @@ export const getCurrentBackgroundImage = (config: Config, currentStep: number): 
 
     case 4: {
       const material = opts.interior.material.find((m) => m.id === config.interiorMaterialId);
-      const seat = opts.interior.seat.find((s) => s.id === config.seatId);
-      return seat?.mainImage || material?.mainImage || model.mainImage;
+      return material?.mainImage || model.mainImage;
     }
 
     case 5: {

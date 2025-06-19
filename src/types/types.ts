@@ -18,6 +18,7 @@ export interface CarModel {
     colors: {
       body: ColorOption[];
       moldings: ColorOption[];
+      combinations: ColorCombination[];
     };
     wheels: WheelOption[];
     interior: {
@@ -42,6 +43,11 @@ export interface ColorOption {
   name: string;
   code: string;
   price: number;
+}
+
+export interface ColorCombination {
+  bodyId: string;
+  moldingId: string;
   mainImage: string;
 }
 

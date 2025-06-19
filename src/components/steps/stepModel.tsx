@@ -25,17 +25,23 @@ export const StepModel = () => {
 
   return (
     <>
-      <h1 className="text-4xl text-center font-medium mb-4 uppercase">Все модель</h1>
-      <div className="mt-9.6 mb-4 text-xl font-semibold">{name}</div>
-      <div className="text-base mb-3 font-medium">₽ {price.toLocaleString('ru-RU')}</div>
-      <div className="flex items-center gap-6">
+      <h1 className="hidden lg:block text-4xl text-center font-medium mb-4 uppercase">
+        Все модель
+      </h1>
+      <div className="mt-9.6 mb-2 lg:mb-4 text-2xl lg:text-xl font-normal lg:font-semibold">
+        {name.toUpperCase()}
+      </div>
+      <div className="text-lg lg:text-base mb-3 font-semibold lg:font-medium">
+        ₽ {price.toLocaleString('ru-RU')}
+      </div>
+      <div className="flex items-center gap-3 lg:gap-6">
         {carOptions.models.map((model) => (
           <OptionItem
             key={model.id}
             onClick={() => handleModelChange(model)}
             isActive={config.modelId === model.id}
           >
-            <img src={model.image} alt={model.name} className="max-w-none h-12" />
+            <img src={model.image} alt={model.name} className="max-w-none h-full" />
           </OptionItem>
         ))}
       </div>
